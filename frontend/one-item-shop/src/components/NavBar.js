@@ -1,13 +1,19 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import './NavBar.css';
 
-function NavBar() {
+function NavBar({cart}) {
     return (
         <nav className="navbar">
             <div className="container">
                 <ul className="nav-links">
-                    <li><a href="/Product">Product</a></li>
-                    <li><a href="/Cart">Cart</a></li>
+                    <li>
+                        <Link to="/" className="text-white hover:text-gray-200">Product</Link>
+                    </li>
+                    <li>           
+                        <Link to="/cart" className="text-white hover:text-gray-200">Cart ({cart})</Link>
+                    </li>
                 </ul>
             </div>
         </nav>

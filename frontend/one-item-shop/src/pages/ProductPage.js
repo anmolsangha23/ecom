@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
-import productImage from '../productimage/lumber.png';
+import React from 'react';
 import './ProductPage.css';
+import productImage from '../productimage/question-mark.jpg';
 
-import NavBar from '../components/NavBar';
+
 import BuyButton from '../components/BuyButton';
 
 // import axios from 'axios';
 
-const ProductPage = () => {
-    // const [name, setName] = useState('');
-    // const [description, setDescription] = useState('');
+const ProductPage = ({addToCart, product}) => {
 
+    const handleBuyButton = () => {
+        addToCart();
+    }
 
     return (
         <div>
-            <NavBar/>
             <div> 
                 <img src={productImage} alt='Today&apos;s product'>
                 </img>
-                <h1> Product name </h1> 
+                <h1> {product.name} </h1> 
+                <h2> ${product.price} </h2>
                 <p>
-                    Product description
+                {product.description}
                 </p>
-                <BuyButton/>
+                <BuyButton onClick={handleBuyButton}/>
             </div>
             
         </div>
