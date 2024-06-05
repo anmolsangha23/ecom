@@ -15,6 +15,7 @@ const CheckoutPage = ({ cartQuantity, clearCart }) => {
         clearCart(); // Clear the cart after successful purchase
         alert('Purchase complete!');
       } else {
+        console.log(response.ok);
         alert('Error 1 completing purchase.');
       }
     } catch (error) {
