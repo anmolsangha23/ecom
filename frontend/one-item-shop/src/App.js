@@ -6,20 +6,47 @@ import productImage from './productimage/question-mark.jpg';
 
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import NavBar from './components/NavBar';
 
 function App() {
   const [cart, setCart] = useState(0);
 
-  const addToCart = () => {
+  const addToCart = async () => {
     setCart(cart+1);
-  }
 
-  const removeFromCart = () => {
+    await fetch('http://localhost:5001/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ quantity: cart + 1 }),
+    });
+  };
+
+  const removeFromCart = async () => {
     if (cart > 0) {
       setCart(cart - 1);
+
+      const response  = await fetch('http://localhost:5001/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ quantity: cart - 1 }),
+      });
+
+      const data = await response.json();
+      console.log('ProductPage - handleAddToCart response:', data);
     }
   };
+
+  const clearCart = () => {
+    setCart(0);
+  }
+  // const handleCheckout = () => {
+  //   // Navigate to checkout page
+  // };
 
   // Product Information
   const Product = {
@@ -36,6 +63,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ProductPage product={Product} addToCart={addToCart} />} />
           <Route path="/cart" element={<CartPage product={Product} cart={cart} removeFromCart={removeFromCart}/>} />
+          <Route path="/checkout" element={<CheckoutPage cartQuantity={cart} clearCart={clearCart} />} />
         </Routes>
       </div>
     </Router>
