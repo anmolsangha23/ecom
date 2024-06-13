@@ -25,7 +25,7 @@ const CartPage = ({cart, product, removeFromCart}) => {
                         <div>
                             <RemoveButton onClick={removeFromCart}> Remove From Cart</RemoveButton>
                             <div className='divider'/>
-                            <CheckoutButton> Checkout</CheckoutButton>
+                            <CheckoutButton quantity={cart}> Checkout</CheckoutButton>
                         </div>
                     </div>
                 </div>
