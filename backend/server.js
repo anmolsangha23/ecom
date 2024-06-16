@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')('sk_test_51OGx5vICLa2rzf7VWiMPztmEyiPJuYRSrvQLD5Xl6Q5GreBr46tqm9uBgugk7fBDfFPlaizo6O5nTDX7ovkN9PfC00gtXJJKYv');
+const stripe = require('stripe')(process.env.STRIPE_SK);
 const bodyParser = require('body-parser');
 const path = require('path');
 const connectDB = require('./db');
@@ -46,6 +48,8 @@ app.post('/create-checkout-session', async (req, res) => {
 
   res.json({ id: session.id });
 });
+
+
 
 
 app.listen(PORT, () => {
