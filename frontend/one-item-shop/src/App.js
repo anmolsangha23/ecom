@@ -7,6 +7,7 @@ import productImage from './productimage/question-mark.jpg';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
+import AdminDashboard from './pages/AdminDashboard';
 import NavBar from './components/NavBar';
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
           <Route path="/" element={<ProductPage product={Product} addToCart={addToCart} />} />
           <Route path="/cart" element={<CartPage product={Product} cart={cart} removeFromCart={removeFromCart}/>} />
           <Route path="/checkout" element={<CheckoutPage cartQuantity={cart} clearCart={clearCart} />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </div>
     </Router>
